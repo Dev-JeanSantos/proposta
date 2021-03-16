@@ -23,8 +23,8 @@ public class PropostaRequest {
 	String email;
 	@NotBlank
 	String nome;
-	@NotNull
 	@Valid
+	@NotNull
 	EnderecoRequest endereco;
 	@NotNull
 	@Positive
@@ -43,6 +43,15 @@ public class PropostaRequest {
 	public String toString() {
 		return "PropostaRequest [nome=" + nome + ", documento=" + documento + ", email=" + email + ", salario="
 				+ salario + ", endereco=" + endereco + "]";
+	}
+	
+	
+	public EnderecoRequest getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(EnderecoRequest endereco) {
+		this.endereco = endereco;
 	}
 
 	public Proposta toModel() {
