@@ -23,6 +23,12 @@ public class Proposta {
 	private @NotBlank @Email String email;
 	private @NotNull @Positive BigDecimal salario;
 	private @NotNull @Valid EnderecoRequest endereco;
+	
+	@Deprecated
+	public Proposta() {
+		
+	}
+	
 
 	public Proposta(@NotBlank String nome, @NotBlank String documento, @NotBlank @Email String email,
 			@NotNull @Positive BigDecimal salario, @NotNull @Valid EnderecoRequest endereco) {
@@ -32,6 +38,7 @@ public class Proposta {
 				this.salario = salario;
 				this.endereco = endereco;
 	}
+	
 	public Long getId() {
 		return id;
 	}

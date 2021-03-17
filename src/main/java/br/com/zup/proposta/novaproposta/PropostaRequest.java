@@ -1,6 +1,7 @@
 package br.com.zup.proposta.novaproposta;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+import br.com.zup.proposta.excecoes.ExcecaoParaDocumentosDuplicados;
 import br.com.zup.proposta.validacoes.CpfOuCnpj;
 
 /**
@@ -16,7 +18,7 @@ import br.com.zup.proposta.validacoes.CpfOuCnpj;
  */
 public class PropostaRequest {
 	@NotBlank
-	@CpfOuCnpj
+	@CpfOuCnpj(message = "CNPJ ou CPF Inválido")
 	String documento;
 	@NotBlank
 	@Email
@@ -54,8 +56,15 @@ public class PropostaRequest {
 		this.endereco = endereco;
 	}
 
-	public Proposta toModel() {
+	public Proposta toModel(PropostaRepository repository) throws ExcecaoParaDocumentosDuplicados {
+		
+	Optional<Proposta> possivelProposta = repository.findByDocumento(documento);
+		
+		if(possivelProposta.isPresent()) {
+			 throw  new ExcecaoParaDocumentosDuplicados("Proposta ja existe no sistema");
+		}
 		
 		return new Proposta(nome, documento, email, salario, endereco);
 	}
+	
 }

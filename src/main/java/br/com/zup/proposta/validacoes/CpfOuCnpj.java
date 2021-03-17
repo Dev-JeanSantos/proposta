@@ -23,7 +23,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @ConstraintComposition(CompositionType.OR)
 public @interface CpfOuCnpj {
 
-	String message() default "CPF ou CNPJ está inválido";
+	String message() default "CPF ou CNPJ inválido";
 	    Class<?>[] groups() default{};
 
 	Class<? extends Payload>[] payload() default{};
