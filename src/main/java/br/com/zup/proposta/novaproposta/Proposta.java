@@ -1,7 +1,6 @@
 package br.com.zup.proposta.novaproposta;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -35,6 +34,8 @@ public class Proposta {
 	@Column(nullable = false)
 	private LocalDateTime updateDate = LocalDateTime.now();
 	
+	private String cartao;
+	
 	@Deprecated
 	public Proposta() {
 		
@@ -62,6 +63,16 @@ public class Proposta {
 	public String getDocumento() {
 		return documento;
 	}
+	
+	public String getCartao() {
+		return cartao;
+	}
+
+	public void setCartao(String cartao) {
+		this.cartao = cartao;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Proposta [id=" + id + ", nome=" + nome + ", documento=" + documento + ", email=" + email + ", salario="
