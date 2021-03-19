@@ -1,8 +1,13 @@
 package br.com.zup.proposta.novaproposta;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +28,12 @@ public class Proposta {
 	private @NotBlank @Email String email;
 	private @NotNull @Positive BigDecimal salario;
 	private @NotNull @Valid EnderecoRequest endereco;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private StatusProposta status = StatusProposta.NÃO_ELEGÍVEL;
+	@Column(nullable = false)
+	private LocalDateTime updateDate = LocalDateTime.now();
 	
 	@Deprecated
 	public Proposta() {
@@ -42,10 +53,27 @@ public class Proposta {
 	public Long getId() {
 		return id;
 	}
+	public StatusProposta getStatus() {
+		return status;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public String getDocumento() {
+		return documento;
+	}
 	@Override
 	public String toString() {
-		return "Proposta [nome=" + nome + ", documento=" + documento + ", email=" + email + ", salario=" + salario
-				+ ", endereco=" + endereco + "]";
+		return "Proposta [id=" + id + ", nome=" + nome + ", documento=" + documento + ", email=" + email + ", salario="
+				+ salario + ", endereco=" + endereco + ", status=" + status + "]";
+	}
+
+
+	public void atualizacaoStatus(StatusProposta status) {
+		
+		this.status = status;
+		this.updateDate  = LocalDateTime.now();
+		
 	}
 
 }
