@@ -1,6 +1,7 @@
 package br.com.zup.proposta.novaproposta;
 
 import java.net.URI;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -9,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +66,20 @@ public class PropostaController {
 		
 		return ResponseEntity.created(uri).build();
 
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<?> BuscaPropostaPorId(@PathVariable("id") Long id) {
+		Optional<Proposta> proposta = repository.findById(id);
+		
+		if(proposta.isPresent()) {
+			
+			PropostaResponse resp =  new PropostaResponse(proposta.get());
+			Assert.notNull(resp,"Erro ao retornar dados da proposta");
+			return ResponseEntity.ok(resp);
+		}
+		
+		return ResponseEntity.notFound().build();
 	}
 	
 }
