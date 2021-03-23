@@ -41,6 +41,8 @@ public class PropostaController {
 	@Transactional
 	public ResponseEntity<Proposta> criar(@RequestBody @Valid PropostaRequest request) throws ExcecaoParaDocumentosDuplicados {
 		
+		
+		
 		Proposta proposta = request.toModel(repository);
 		repository.save(proposta);
 		
@@ -53,8 +55,9 @@ public class PropostaController {
 			FormAnaliseResponse formRes = analise.formAnalise(formReq);
 			status = formRes.toModelStatus();
 		} catch (FeignException.UnprocessableEntity e) {
-			status = StatusProposta.NÃO_ELEGÍVEL;
+			status = StatusProposta.NAO_ELEGIVEL;
 		}catch (Exception e) {
+			e.printStackTrace();
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Um erro inesperado ocorreu!");
 		}
 		

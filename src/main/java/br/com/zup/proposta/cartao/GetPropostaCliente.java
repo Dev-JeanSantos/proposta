@@ -4,10 +4,10 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(url = "http://localhost:8888/api", name = "getProposta")
+@FeignClient(url = "${analiseCartao.targetUrl}", name =  "solicitacao")
 public interface GetPropostaCliente {
 	
-	@GetMapping("/cartoes")
+	@GetMapping("/api/cartoes")
 	public FormPropostaResponse response(@RequestParam(name = "idProposta") Long idProposta);
 
 }

@@ -39,7 +39,7 @@ public class NovaPropostaTest {
 	 public static Stream<Arguments> PassaCPFeCNPJ(){
 	        return Stream.of(
 	                Arguments.of("{\n" +
-	                		"\t\"documento\" : \"676253985-87\",\n" +
+	                		"\t\"documento\" : \"080.348.957-92\",\n" +
 	                        "\t\"email\" : \"jeancbsan@gmail.com\",\n" +
 	                        "\t\"nome\" : \"Jean Santos\",\n" +
 	                        "\t\"endereco\" : {\n" +

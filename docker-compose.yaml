@@ -133,6 +133,20 @@ services:
       VAULT_DEV_ROOT_TOKEN_ID: ee413645-dbe8-4848-afc6-6bb2768ada75
       VAULT_TOKEN: ee413645-dbe8-4848-afc6-6bb2768ada75
       VAULT_ADDR: http://127.0.0.1:8200
+          
+  proposta:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    image: orange/proposta
+    ports:
+      - "4040:8080"
+    environment:
+      API_CARTAO: http://contas:8888
+      API_PROPOSTA: http://analise:9999
+    depends_on:
+      - contas
+      - analise
 
 volumes:
   grafana-volume:

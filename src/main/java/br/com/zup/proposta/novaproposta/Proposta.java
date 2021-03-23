@@ -30,7 +30,7 @@ public class Proposta {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private StatusProposta status = StatusProposta.NÃO_ELEGÍVEL;
+	private StatusProposta status = StatusProposta.NAO_ELEGIVEL;
 	@Column(nullable = false)
 	private LocalDateTime updateDate = LocalDateTime.now();
 	

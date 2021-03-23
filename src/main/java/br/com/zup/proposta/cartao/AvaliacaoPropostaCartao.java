@@ -26,7 +26,7 @@ public class AvaliacaoPropostaCartao {
 	@Scheduled(fixedDelayString= "${tempo_avaliar_cartao}")
 	private void analisaCartoes() {
 		
-		List<Proposta> propostas = repository.findByStatusAndCartao(StatusProposta.ELEGÍVEL, null);
+		List<Proposta> propostas = repository.findByStatusAndCartao(StatusProposta.ELEGIVEL, null);
 		
 		  if(!propostas.isEmpty()){
 	            propostas.stream().forEach(this::getCartaoId);

@@ -28,10 +28,10 @@ public class FormAnaliseResponse {
 		
 		if("COM_RESTRICAO".equals(status)) {
 			
-			return StatusProposta.NÃO_ELEGÍVEL;
+			return StatusProposta.NAO_ELEGIVEL;
 		}
 		
-		return  StatusProposta.ELEGÍVEL;
+		return  StatusProposta.ELEGIVEL;
 	}
 	
 }
