@@ -31,6 +31,7 @@ public class Proposta {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private StatusProposta status = StatusProposta.NAO_ELEGIVEL;
+	//Ñ
 	@Column(nullable = false)
 	private LocalDateTime updateDate = LocalDateTime.now();
 	
