@@ -45,5 +45,15 @@ public class ValidationErrorHandler {
 		FormErros dto = new FormErros("Documentos - CPF ou CNPJ", "Já existe uma proposta com esse mesmo documento no sistema", 422, time);
 		return dto;
 	}
+		
+	
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(BiometriaException.class)
+    public FormErros fingerPrintInvalidEncode(BiometriaException exception) {
+        LocalDateTime time = LocalDateTime.now();
+        FormErros dto = new FormErros("fingerprint","Base64 Encode inválido",400,time);
+        return dto;
+    }
+	
 
 }
